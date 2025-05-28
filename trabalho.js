@@ -7,7 +7,7 @@ export {
 }
 
 function verificarSePodeSerAdotado(idade,porte) {
-    if (idade <= 2 && (porte == 'P' || porte == 'M')) {
+    if (idade == 1 && porte == 'M') {
         return true
     } else
         return false
