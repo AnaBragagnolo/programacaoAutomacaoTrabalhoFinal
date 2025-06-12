@@ -1,0 +1,56 @@
+# CI de nivel 01 - Disparo manual a partir de 1 clique
+
+# nome do nosso 'pipeline'
+name: 'Execução Manual'
+
+# regras de disparo (gatilhos/triggers)
+#gatilho de execução manual = workflow_dispatch
+
+on:
+  workflow_dispatch:
+
+# tarefas dentro do pipeline = jobs
+
+jobs:
+  e2e-tests:
+    #maquina que o job vai executar
+    runs-on: ubuntu-latest
+
+    # passos do script de build
+    steps:
+      # clone do projeto para dentro da máquina do Actions
+      - uses: actions/checkout@v4
+
+      #instalação do node
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      #instalação do Yarn
+      - name: Instalando Yarn
+        run: npm install -g yarn
+
+      #instalação das dependencias
+      - name: Instalando dependencias
+        run: yarn
+
+      #instalação do Playwright (navegadores)
+      - name: Instalando Playwright
+        run: yarn playwright install
+
+      # executar os testes e2e
+      - name: Executando testes e2e
+        run: yarn run e2e
+
+  #notificar Discord
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enviar notificação para o Discord
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d '{"content": "🚀 Execução MANUAL concluída!"}' \
+               $DISCORD_WEBHOOK
