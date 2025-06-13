@@ -26,18 +26,14 @@ jobs:
         with:
           node-version: 22.x
 
-      #instalação do Yarn
-      - name: Instalando Yarn
-        run: npm install -g yarn
+      #instalação do Mocha
+      - name: Instalando Mocha
+        run: npm install -g mocha
 
       #instalação das dependencias
       - name: Instalando dependencias
-        run: yarn
-
-      #instalação do Playwright (navegadores)
-      - name: Instalando Playwright
-        run: yarn playwright install
+        run: mocha
 
       # executar os testes
       - name: Executando testes
-        run: yarn run testes
+        run: npx run testes
