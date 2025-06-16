@@ -2,10 +2,6 @@ function geradorDeTagsDeIdentificacao(nome) {
     return nome.toUpperCase()
 }
 
-export {
-    geradorDeTagsDeIdentificacao
-}
-
 function verificarSePodeSerAdotado(idade,porte) {
     if (idade == 1 && porte == 'M') {
         return true
@@ -13,15 +9,8 @@ function verificarSePodeSerAdotado(idade,porte) {
         return false
 }
 
-export {
-    verificarSePodeSerAdotado
-}
-
 function calcularConsumoDeRacao(nome, idade, peso) {
     return (peso * 300)
-}
-export {
-    calcularConsumoDeRacao
 }
 
 function decidirTipoDeAtividadePorPorte(porte) {
@@ -35,14 +24,14 @@ function decidirTipoDeAtividadePorPorte(porte) {
         return "Digite apenas uma das opções: 'pequeno', 'médio' ou 'grande'"
 }
 
-export {
-    decidirTipoDeAtividadePorPorte
-}
-
 async function buscarDadoAsync() {
     return 'Pipoca'
 } 
 
 export {
+    geradorDeTagsDeIdentificacao,
+    verificarSePodeSerAdotado,
+    calcularConsumoDeRacao,
+    decidirTipoDeAtividadePorPorte,
     buscarDadoAsync
 }
